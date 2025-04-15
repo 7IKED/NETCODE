@@ -1,21 +1,69 @@
-MIT License
+DEVKIT² Lizenzblatt für die Nutzung von Tools unter der CC BY-NC 4.0 Lizenz
+1. Lizenzbeschreibung
+Die hier angebotenen Tools von DEVKIT² werden unter der Creative Commons Namensnennung-Nicht-kommerziell 4.0 International Lizenz (CC BY-NC 4.0) zur Verfügung gestellt. Diese Lizenz erlaubt es Nutzern, das Material unter den folgenden Bedingungen zu teilen, anzupassen und weiterzugeben:
 
-Copyright (c) 2025 DEVKiTZ
+Erlaubte Nutzungen:
+Teilen: Du darfst das Material in jedem Medium oder Format kopieren, weitergeben und verbreiten.
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+Anpassen: Du darfst das Material neu mischen, transformieren und darauf aufbauen. Jegliche Abwandlungen müssen jedoch ebenfalls unter denselben Lizenzbedingungen bereitgestellt werden.
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+Bedingungen:
+Namensnennung: Du musst den Urheber des Materials korrekt benennen, einen Link zur Lizenz angeben und angeben, ob Änderungen vorgenommen wurden. Diese Angaben müssen auf eine angemessene Weise erfolgen, jedoch nicht so, dass der Eindruck entsteht, dass der Urheber oder Lizenzgeber deine Nutzung unterstützt.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+Nicht kommerzielle Nutzung: Das Material darf nur zu nicht kommerziellen Zwecken verwendet werden. Jegliche Nutzung, die in erster Linie auf kommerziellen Vorteil oder finanzielle Vergütung abzielt, ist ausgeschlossen.
+
+Keine zusätzlichen Einschränkungen: Du darfst keine rechtlichen oder technischen Maßnahmen ergreifen, die andere daran hindern könnten, das Material gemäß dieser Lizenz zu verwenden.
+
+Wichtige Hinweise:
+Die Lizenz gilt nicht für gemeinfreies Material oder Material, das bereits durch eine andere Lizenz oder Ausnahme (wie z.B. Fair Use oder Fair Dealing) geschützt ist. In diesen Fällen sind keine Lizenzanforderungen erforderlich.
+
+Haftungsausschluss: Es werden keine Garantien für die Nutzung des Materials übernommen. Der Lizenzgeber kann nicht für Schäden oder Verluste verantwortlich gemacht werden, die durch die Nutzung des Materials entstehen.
+
+Zusätzliche Genehmigungen: Bei der Nutzung des Materials müssen möglicherweise weitere Rechte wie Persönlichkeitsrechte oder Datenschutzrechte beachtet werden. Du musst sicherstellen, dass deine Nutzung keine bestehenden Rechte Dritter verletzt.
+
+2. Besondere Bestimmungen für DEVKIT²-Tools
+
+Da die Tools von DEVKIT² eine bestimmte Funktionalität bieten und speziell für Entwickler konzipiert sind, ist es wichtig, auf einige zusätzliche Punkte einzugehen:
+
+Veränderungen und Weiterentwicklung: Nutzer, die das Tool anpassen oder weiterentwickeln, müssen ihre Änderungen dokumentieren und angeben, ob und wie sie das ursprüngliche Tool verändert haben. Dies könnte durch eine klare Versionsangabe und ein Changelog erfolgen.
+
+Veröffentlichung von Abwandlungen: Wenn du eine abgewandelte Version des Tools veröffentlichst, muss auch diese Version unter denselben Lizenzbedingungen (CC BY-NC 4.0) verfügbar sein, um sicherzustellen, dass die Lizenzkette erhalten bleibt.
+
+Technische Maßnahmen: Die Lizenz verbietet die Anwendung von technischen Maßnahmen, die andere Nutzer daran hindern könnten, das Tool gemäß den Lizenzbedingungen zu verwenden. Das bedeutet, dass alle Änderungen und Nutzungsmöglichkeiten offen und zugänglich bleiben müssen, ohne Einschränkungen durch technische Beschränkungen wie DRM (Digital Rights Management).
+
+Kommerzielle Nutzung: Jegliche kommerzielle Nutzung (z. B. die Monetarisierung von Weiterentwicklungen) ist ohne explizite schriftliche Genehmigung des Lizenzgebers untersagt. Wenn du eine kommerzielle Nutzung anstrebst, solltest du sicherstellen, dass du die Lizenzbedingungen für die kommerzielle Lizenzvergabe überprüfst oder eine separate Vereinbarung triffst.
+
+3. Lizenz und Quellenangabe
+
+Um den Lizenzanforderungen der CC BY-NC 4.0 zu entsprechen, müssen Nutzer bei der Verwendung des Materials immer folgende Angaben machen:
+
+Urheber: Geben Sie den Namen des Urhebers (DEVKIT²) an.
+
+Link zur Lizenz: Fügen Sie einen Link zur Lizenz ein: Creative Commons Namensnennung-Nicht kommerziell 4.0 International Lizenz.
+
+Angabe von Änderungen: Falls Änderungen vorgenommen wurden, müssen diese dokumentiert und klar angegeben werden.
+
+4. Wichtige rechtliche Hinweise
+
+Diese Lizenz stellt keine rechtliche Beratung dar. Es wird empfohlen, im Zweifelsfall rechtlichen Rat einzuholen, insbesondere bei Fragen zu Persönlichkeitsrechten, Datenschutz oder anderen rechtlichen Einschränkungen, die außerhalb des Geltungsbereichs der CC-Lizenz liegen.
+
+Creative Commons ist eine gemeinnützige Organisation, die offene Lizenzen bereitstellt. Weitere Informationen und Unterstützung zu den Lizenzbedingungen sind auf der Creative Commons-Website verfügbar.
+
+Zusätzliche Ressourcen und Verlinkungen:
+Weitere Informationen zur CC-Lizenzierung: Creative Commons – Lizenzen und ihre Anwendung
+
+Creative Commons 4.0 Lizenz: Deed – Namensnennung-Nicht kommerziell 4.0 International Lizenz
+
+FAQ zu Creative Commons Lizenzen: FAQs Creative Commons
+
+Zusammenfassung:
+Das Lizenzblatt für die Tools von DEVKIT² basiert auf der Creative Commons Namensnennung-Nicht kommerziell 4.0 International Lizenz (CC BY-NC 4.0), die es Nutzern erlaubt, das Material zu teilen und anzupassen, jedoch ausschließlich für nicht-kommerzielle Zwecke. Nutzer müssen dabei den Urheber korrekt benennen, einen Link zur Lizenz bereitstellen und Änderungen dokumentieren. Kommerzielle Verwendungen sind ohne spezielle Vereinbarungen ausgeschlossen, und es dürfen keine technischen Maßnahmen angewendet werden, die die Verwendung des Materials einschränken.
+
+Die Einhaltung dieser Lizenzbedingungen sorgt für Transparenz und ermöglicht eine breite, aber kontrollierte Nutzung der Tools, während gleichzeitig die Rechte des Urhebers gewahrt bleiben.
+
+Quellen:
+Creative Commons – Lizenz Deed: Namensnennung-Nicht kommerziell 4.0
+
+Creative Commons – Lizenzbeschreibung 4.0
+
+Datenschutz-Wiki: Urheberrechte und Lizenzen
