@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>NETMASTER WIKI</title>
+    <link rel="stylesheet" href="/static/style.css">
+  </head>
+  <body>
+    <main>
+      <h1>NETMASTER WIKI</h1>
+      <section>
+        <form action="/save" method="post">
+          <label>Titel<br /><input name="title" placeholder="Seitentitel" /></label>
+          <label>Markdown<br /><textarea name="content" id="content" rows="12" placeholder="Füge hier Markdown ein..."></textarea></label>
+          <label>Tags (kommagetrennt, optional)<br /><input name="tags" id="tags" placeholder="autogeneriert" /></label>
+          <div style="display:flex;gap:.5rem;align-items:center;margin-top:.5rem;">
+            <button type="submit">Speichern</button>
+            <button type="button" id="genTags">Tags generieren</button>
+          </div>
+        </form>
+      </section>
+
+      <section>
+        <h2>Seiten</h2>
+        <ul>
+          {% for p in pages %}
+            <li><a href="/page/{{ p }}">{{ p }}</a></li>
+          {% else %}
+            <li><em>Keine Seiten vorhanden</em></li>
+          {% endfor %}
+        </ul>
+      </section>
+
+      <section>
+        <h2>Autoupdater Feedback</h2>
+        <form id="feedbackForm">
+          <label>Deine Nachricht<br /><textarea id="fbmsg" rows="4"></textarea></label>
+          <div style="margin-top:.5rem;"><button type="button" id="sendFb">Senden</button></div>
+        </form>
+        <div id="fbStatus"></div>
+      </section>
+
+      <section>
+        <h2>Admin: Fetch externer Ressourcen</h2>
+        <p style="font-size:.9rem;color:#555;">Nur für Betreiber: Du kannst hier ein Admin-Token lokal im Browser speichern und damit serverseitige Fetches (auch unsicher) anstoßen. Das Token wird nur im lokalen <code>localStorage</code> gespeichert.</p>
+        <label>Admin-Token (wird in localStorage gespeichert)<br /><input id="adminToken" placeholder="Token eingeben" type="password" /></label>
+        <div style="display:flex;gap:.5rem;align-items:center;margin-bottom:.5rem;">
+          <button type="button" id="saveToken">Token speichern</button>
+          <button type="button" id="clearToken">Token löschen</button>
+          <span id="tokenStatus" style="margin-left:.5rem;color:#666;font-size:.9rem"></span>
+        </div>
+
+        <label>URL zum Abrufen (z. B. https://example.local)<br /><input id="fetchUrl" placeholder="https://..." /></label>
+        <label style="display:flex;gap:.5rem;align-items:center;"><input id="fetchInsecure" type="checkbox" /> Unsichere TLS zulassen (nur mit Token)</label>
+        <div style="display:flex;gap:.5rem;align-items:center;margin-top:.5rem;">
+          <button type="button" id="doFetch">Fetch ausführen</button>
+        </div>
+        <div id="fetchResult" style="margin-top:.5rem;white-space:pre-wrap;background:#f3f4f6;padding:.5rem;border-radius:6px;border:1px solid #eee"></div>
+      </section>
+    </main>
+
+    <script>
+    document.getElementById('genTags').addEventListener('click', async function(){
+      const txt = document.getElementById('content').value || '';
+      const resp = await fetch('/autotags', {method:'POST', headers:{'content-type':'application/json'}, body: JSON.stringify({text: txt})});
+      const j = await resp.json();
+      document.getElementById('tags').value = (j.tags || []).slice(0,6).join(', ');
+    });
+
+    document.getElementById('sendFb').addEventListener('click', async function(){
+      const msg = document.getElementById('fbmsg').value || '';
+      const resp = await fetch('/feedback', {method:'POST', headers:{'content-type':'application/json'}, body: JSON.stringify({message: msg, source: 'netmaster-ui'})});
+      const j = await resp.json();
+      document.getElementById('fbStatus').innerText = j.ok ? 'Danke, Feedback gespeichert.' : ('Fehler: '+(j.error||'unbekannt'));
+    });
+
+    // Admin token storage and fetch UI
+    const tokenKey = 'netmaster_admin_token';
+    const adminTokenInput = document.getElementById('adminToken');
+    const tokenStatus = document.getElementById('tokenStatus');
+    function refreshTokenUI(){
+      const t = localStorage.getItem(tokenKey) || '';
+      if(t){
+        tokenStatus.innerText = 'Token gespeichert';
+        adminTokenInput.value = '********';
+      } else {
+        tokenStatus.innerText = 'Kein Token';
+        adminTokenInput.value = '';
+      }
+    }
+    refreshTokenUI();
+
+    document.getElementById('saveToken').addEventListener('click', function(){
+      const v = adminTokenInput.value || '';
+      if(!v){ alert('Token darf nicht leer sein'); return; }
+      // if user entered masked stars, do not overwrite existing token
+      if(v === '********'){
+        alert('Token wird bereits verwendet (keine Änderung)');
+        return;
+      }
+      localStorage.setItem(tokenKey, v);
+      refreshTokenUI();
+      alert('Token lokal gespeichert');
+    });
+
+    document.getElementById('clearToken').addEventListener('click', function(){
+      localStorage.removeItem(tokenKey);
+      refreshTokenUI();
+      alert('Token gelöscht');
+    });
+
+    document.getElementById('doFetch').addEventListener('click', async function(){
+      const url = document.getElementById('fetchUrl').value || '';
+      if(!url){ alert('URL erforderlich'); return; }
+      const insecure = document.getElementById('fetchInsecure').checked;
+      const token = localStorage.getItem(tokenKey) || '';
+      const headers = {'Content-Type':'application/json'};
+      if(token) headers['X-Admin-Token'] = token;
+      document.getElementById('fetchResult').innerText = 'Request läuft...';
+      try{
+        const resp = await fetch('/fetch', {method:'POST', headers, body: JSON.stringify({url, insecure})});
+        const ct = resp.headers.get('content-type') || '';
+        if(ct.includes('application/json')){
+          const j = await resp.json();
+          document.getElementById('fetchResult').innerText = JSON.stringify(j, null, 2);
+        } else {
+          const txt = await resp.text();
+          document.getElementById('fetchResult').innerText = txt.slice(0, 20000);
+        }
+      }catch(e){
+        document.getElementById('fetchResult').innerText = 'Fehler: '+String(e);
+      }
+    });
+    </script>
+  </body>
+  </html>

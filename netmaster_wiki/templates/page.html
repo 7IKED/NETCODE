@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="/static/style.css">
+  </head>
+  <body>
+    <main>
+      <a href="/">← Zurück</a>
+      <h1>{{ title }}</h1>
+      {% if tags %}
+        <div class="tags">Tags: {% for t in tags %}<span class="tag">{{ t }}</span>{% endfor %}</div>
+      {% endif %}
+      <article class="content">{{ content|safe }}</article>
+    </main>
+  </body>
+  </html>
