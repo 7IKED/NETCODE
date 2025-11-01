@@ -11,6 +11,7 @@
       <h1>NETMASTER WIKI</h1>
       <section>
         <form action="/save" method="post">
+          <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}" />
           <label>Titel<br /><input name="title" placeholder="Seitentitel" /></label>
           <label>Markdown<br /><textarea name="content" id="content" rows="12" placeholder="Füge hier Markdown ein..."></textarea></label>
           <label>Tags (kommagetrennt, optional)<br /><input name="tags" id="tags" placeholder="autogeneriert" /></label>
@@ -61,16 +62,17 @@
     </main>
 
     <script>
+    const NETMASTER_CSRF = "{{ session.csrf_token }}";
     document.getElementById('genTags').addEventListener('click', async function(){
       const txt = document.getElementById('content').value || '';
-      const resp = await fetch('/autotags', {method:'POST', headers:{'content-type':'application/json'}, body: JSON.stringify({text: txt})});
+      const resp = await fetch('/autotags', {method:'POST', headers:{'content-type':'application/json', 'X-CSRF-Token': NETMASTER_CSRF}, body: JSON.stringify({text: txt})});
       const j = await resp.json();
       document.getElementById('tags').value = (j.tags || []).slice(0,6).join(', ');
     });
 
     document.getElementById('sendFb').addEventListener('click', async function(){
       const msg = document.getElementById('fbmsg').value || '';
-      const resp = await fetch('/feedback', {method:'POST', headers:{'content-type':'application/json'}, body: JSON.stringify({message: msg, source: 'netmaster-ui'})});
+      const resp = await fetch('/feedback', {method:'POST', headers:{'content-type':'application/json', 'X-CSRF-Token': NETMASTER_CSRF}, body: JSON.stringify({message: msg, source: 'netmaster-ui'})});
       const j = await resp.json();
       document.getElementById('fbStatus').innerText = j.ok ? 'Danke, Feedback gespeichert.' : ('Fehler: '+(j.error||'unbekannt'));
     });
@@ -119,7 +121,9 @@
       if(token) headers['X-Admin-Token'] = token;
       document.getElementById('fetchResult').innerText = 'Request läuft...';
       try{
-        const resp = await fetch('/fetch', {method:'POST', headers, body: JSON.stringify({url, insecure})});
+    // include csrf token for server validation
+    if(NETMASTER_CSRF) headers['X-CSRF-Token'] = NETMASTER_CSRF;
+    const resp = await fetch('/fetch', {method:'POST', headers, body: JSON.stringify({url, insecure})});
         const ct = resp.headers.get('content-type') || '';
         if(ct.includes('application/json')){
           const j = await resp.json();
