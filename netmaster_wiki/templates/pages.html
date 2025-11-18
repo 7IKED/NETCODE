@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Seiten</title>
+    <link rel="stylesheet" href="/static/style.css">
+  </head>
+  <body>
+    <main>
+      <a href="/">← Zurück</a>
+      <h1>Alle Seiten</h1>
+      <ul>
+        {% for p in pages %}
+          <li><a href="/page/{{ p }}">{{ p }}</a></li>
+        {% else %}
+          <li><em>Keine Seiten vorhanden</em></li>
+        {% endfor %}
+      </ul>
+    </main>
+  </body>
+  </html>
